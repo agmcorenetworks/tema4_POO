@@ -24,8 +24,15 @@ public class Testing {
 		
 		Perro perrete=new Perro("testPerro1");
 		System.out.println(perrete);
-		cambiarPerro(perrete);
-		System.out.println(perrete);
+		try {
+			Perro p2=(Perro) perrete.clone();
+			System.out.println(p2);
+
+		} catch (CloneNotSupportedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	private static void cambiarPerro(Perro perrete) {

@@ -1,39 +1,59 @@
 package es.corenetwors.dam.programacion.tema4.objetosComplejos;
 
-import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Date;
+
 import org.junit.Test;
 
-import es.corenetwors.dam.programacion.tema4.ejercicioObjetosComplejos.Empleado;
-import es.corenetwors.dam.programacion.tema4.ejercicioObjetosComplejos.Persona;
+import es.corenetwors.dam.programacion.tema4.ejercicioObjetosComplejosRepaso.Persona;
+import es.corenetwors.dam.programacion.tema4.ejercicioObjetosComplejosRepaso.Profesor;
+import es.corenetwors.dam.programacion.tema4.ejercicioObjetosComplejosRepaso.ProfesorInterino;
 
 public class TestPersonaEmpleados {
 	
 	@Test
-	public void test_persona_class() throws CloneNotSupportedException {
-		Persona p1 = new Persona("Pepe","Pepe Pepe",1974,"Chema");
-		Persona p2 = new Persona("Maria","Maria Maria",1975,"Maria");
-		Persona p3 = new Persona("Juan","Juan Juan",1976,"Juan");
-		Persona p4 = p1;
-		Persona p5 = (Persona) p1.clone();
+	public void test_persona_profesores() throws CloneNotSupportedException {
+		Persona p1 = new Persona("alex", "garcia", 25);
+		Persona p2 = new Persona("paco", "garcia", 25);
+		Persona p3 = new Persona("paco", "gracia", 25);
+		Persona p4 = new Persona("alex", "garcia", 25);
+		Persona p5=p1;
 		
-		Empleado e1 = new Empleado(1234,"ventas",p1);
-		Empleado e2 = (Empleado) e1.clone();
-		Empleado e3 = new Empleado(1234,"ventas",p2);
+		assertFalse(p1==p2);
+		assertFalse(p2==p3);
+		assertFalse(p4==p3);
+		assertFalse(p1==p3);
+		assertTrue(p5==p1);
 		
-		System.out.println("objeto e1: "+e1 + "\nobjeto e2: "+e2);
-		assertFalse(e1.getPersona() == e2.getPersona(),"deberia ser false");
+		assertFalse(p1.equals(p2));
+		assertTrue((p1.equals(p4)));
+		assertTrue((p1.equals(p5)));
+		assertFalse((p2.equals(p3)));
 		
-		// e1 != e2
-		assertFalse(e1 == e2,"deberia ser false");
-		// e1 equals e2
-		assertTrue(e1.equals(e2),"deberia ser true");
-		// e1 == e3
-		assertFalse(e1 == e3,"deberia ser false");
-		// e1 equals e3
-		assertFalse(e1.equals(e3),"deberia ser false");
+		Profesor pf1=new Profesor("0001","programacion",p1);
+		Profesor pf2=new Profesor("0002","programacion",p2);
+		Profesor pf4=(Profesor)pf1.clone();			
+		
+		assertFalse(pf1==pf2);
+		assertFalse(pf1.equals(pf2));
+		assertFalse(pf1==pf4);
+		assertTrue(pf1.equals(pf4));
+		
+		Profesor pf3=new Profesor("0003","programacion",p1);
+		assertFalse(pf1==pf3);
+		
+		Date d=new Date();
+		ProfesorInterino pfi1=new ProfesorInterino(d,pf1);		
+		ProfesorInterino pfi2=new ProfesorInterino(d,pf1);
+		assertFalse(pfi1==pfi2);
+		assertTrue(pfi1.equals(pfi2));
+
+		
+		
+		
+
 	}
 	
 	

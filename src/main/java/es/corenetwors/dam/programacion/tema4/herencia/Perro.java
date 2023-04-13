@@ -4,7 +4,7 @@ public class Perro extends Animal implements Cloneable {
 
 	private String nombre;
 
-	Perro(){
+	public Perro(){
 		this.nombre="timo";
 	}
 	
